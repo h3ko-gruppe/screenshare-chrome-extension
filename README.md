@@ -1,4 +1,8 @@
-# BigBlueButton Screenshare Chrome Extension
+# <span style="color:red">This is a modified version only usable for h3ko.de domain</span>
+
+all original credit goes to <https://github.com/bigbluebutton/screenshare-chrome-extension>
+
+## BigBlueButton Screenshare Chrome Extension
 
 By default Google Chrome does not allow sharing of your computer screen. In order for the WebRTC Screenshare to work in BigBlueButton on Google Chrome, you need to whitelist your domain(s). This way Google Chrome will permit sharing your screen.
 
@@ -7,16 +11,16 @@ Everyone who is planning on sharing their screen in Google Chrome on BigBlueButt
 In most use cases, a presenter will only need to add the extension from the Google Chrome store once.
 BigBlueButton administrators will need to create such 
 
-# Instructions for presenters
+## Instructions for presenters
 
-Just add the Google Chrome extension provided from your institution to your browser. It should look like 
-https://chrome.google.com/webstore/detail/bigbluebutton-screenshare/<some unique identifier>
+Just add the Google Chrome extension provided from your institution to your browser. It should look like
+`https://chrome.google.com/webstore/detail/bigbluebutton-screenshare/<some unique identifier>`
 
-# Instructions for administrators for pushing a [newer] version of the Chrome Extension to the Google Store:
+## Instructions for administrators for pushing a [newer] version of the Chrome Extension to the Google Store
 
 Download a copy of the files in this reposiory. Add the correct domain(s) for your institution in `manifest.json`.
 
-```
+```json
 "externally_connectable": {
    "matches": [
        "*://*.bigbluebutton.org/*",
@@ -32,7 +36,7 @@ If you are able to use this unpacked extension and it is working correctly, it i
 
 Create a ZIP archive of the files in this directory (you can omit README.md)
 
-```
+```file
 screenshare-chrome-extension
 ├── background-script.js
 ├── icon.png
@@ -40,33 +44,34 @@ screenshare-chrome-extension
 ```
 
 
-Sign in https://chrome.google.com/webstore/developer/ with Google developer user id
+Sign in <https://chrome.google.com/webstore/developer/> with Google developer user id
 and upload the ZIP archive
 
 After about 30-60 minutes the version of the application will be increased, indicating that the publishing of a new version was successful. Remove the unpacked version of the extension in your browser and install the packed version from the WebStore:
 
-LINK = https://chrome.google.com/webstore/detail/bigbluebutton-screenshare/<KEY>
+LINK = <https://chrome.google.com/webstore/detail/bigbluebutton-screenshare/<KEY>>
 
 Now you should have a link to your extension and a key. Next you need to configure your server to use those for screensharing.
 
-### To configure your HTML5 client:
+### To configure your HTML5 client
 
 If you installed the client as a package `bbb-html5`, edit `/usr/share/meteor/bundle/programs/server/assets/app/config/settings-production.json`
 Alternatively, if you are running a the client in development environment, edit `~/dev/bigbluebutton/bigbluebutton-html5/private/config/settings-development.json`
 
 Populate the `kurento` section of the settings for screensharing with
 
-```
+```json
 "chromeExtensionKey": "YOUR_KEY",
 "chromeExtensionLink": "YOUR_LINK"
 ```
+
 Save the file and restart the client `sudo systemctl restart bbb-html5` in the case of packaged client.
 
 ### To configure your Flash client:
 
 Populate the key and link into `/var/www/bigbluebutton/client/conf/config.xml`
 
-```
+```xml
 <module name="ScreenshareModule"
                         (...)
                         offerWebRTC="true"
@@ -80,6 +85,4 @@ Make sure the property `offerWebRTC` is set to true as above. Save the file and 
 
 You should be able to share your screen from a BigBlueButton meeting now using Google Chrome.
 
-Link:
-https://chrome.google.com/webstore/detail/bigbluebutton-screenshare/akgoaoikmbmhcopjgakkcepdgdgkjfbc
-
+Link: <https://chrome.google.com/webstore/detail/bigbluebutton-screenshare/akgoaoikmbmhcopjgakkcepdgdgkjfbc>
